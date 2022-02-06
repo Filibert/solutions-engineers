@@ -5,12 +5,13 @@ type ConnectionInput = {
   pass?: string;
   user?: string;
 };
+
 export default ({ uri, pass, user }: ConnectionInput) => {
   const connect = () => {
     mongoose
       .connect(uri, { user, pass })
       .then(() => {
-        return console.info(`Successfully connected to ${db}`);
+        return console.info(`Successfully connected to ${uri}`);
       })
       .catch((error) => {
         console.error("Error connecting to database: ", error);
