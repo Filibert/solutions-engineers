@@ -3,14 +3,6 @@ Congratulations on passing the first test!
 
 Now, it is time to show your programming qualities.
 
-## The role
-
-As a Solution Engineer, one of the skills that you’ll exploit the most is the capacity of coming up with a solution (pun intended) that is reliable, scalable, secure and basically, a solution that follows typical software development principles.
-Being able to deliver a project with very little guidance is also a skill we are looking for.
-## Duration of the test
-
-You should be spending from 2 to 4 hours to finish this test.
-
 ## Description
 Being able to track the capacity that a courier has in their vehicle left at any time is crucial. Our Dispatcher (the brain that optimizes the delivery routes) needs this input so that it can understand if a courier has room left or not in their vehicle.
 
@@ -34,19 +26,24 @@ curl -X GET http://localhost:3000/couriers/lookup --data '
 }'
 ```
 Write the API that will allow adding, removing and updating couriers' capacities, and that will let lookup a list of couriers whose capacity is greater or equal to the one required.
+## The solution choose
 
-## Bonus Goals
+The project is seperated in two part:
+ - First a [nodeJs express application](https://github.com/Filibert/solutions-engineers/tree/dev/second_test/courier-capacity-manager) write in typescript.
+ - Secondly a mongoDB instance
 
-In case you are feeling going deeper, here are some proposed bonus goals. Pick any that you want or add your own.
+To simplify the usage of the app there is a docker-compose.yaml to create both part and setting up the node secrets.
 
-* Courier capacities vary as they pick and deliver packages. Allow the API to update a courier's available capacity at any moment as they are assigned new packages.
-* We plan to run this service in the AWS environment. Prepare this API to be deployed.
-* Come up with a smart and scalable output schema that is future-proof. Explain why you think it is so.
-* How about race conditions? How would you avoid race conditions if a lookup is being executed and a capacity update comes?
-* …
+The connection between the app and the database is handle by [MongooseJS](https://mongoosejs.com/)
+For the test part I used [Jest](https://jestjs.io/) and [superTest](https://github.com/visionmedia/supertest)
 
-## Notes
-* How do we run this API? Please provide the right amount of documentation in any format you prefer.
-* Show off! We love Typescript. We love TDD. We love unit tests. We love design patterns. We love engineering!
-* If you were to have more time, what would you do? Briefly explain what could be improved.
-* If you have further questions, don't hesitate asking.
+To run the project in dev mode you can run the mongo container ```docker-compose up mongo``` and in the [Courier-capacity-manager folder](https://github.com/Filibert/solutions-engineers/tree/dev/second_test/courier-capacity-manager) run ```npm run watch``` and start querrying the 8080 port or ```run npm test``` to play the jest test.
+
+To simply try the result you can simply run ```docker-compose up```  
+
+## Left To-do
+
+There is still a lot to do ...
+ - Adding a bunch of test but before everything else make a conf to create a new DB and clean it between test
+ - Be able to connect to the db create during the container creation to avoid use the default 'test' base
+ - Play with [mutex](https://www.npmjs.com/package/async-mutex) to avoid race conditions  
