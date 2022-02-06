@@ -11,13 +11,15 @@ services:
     links:
       - mongo
     environment:
-      - URL_MONGO=mongodb://courier-database:temp_passwd@mongo
+      - DB_URI=mongodb://courier-database:temp_passwd@mongo:27017
   mongo:
     image: mongo:4.0
-    volumes:
-      - "./courier-database/data:/data/db"
     ports: 
       - "27017:27017"
     environment: 
       - MONGO_INITDB_ROOT_USERNAME=courier-database
       - MONGO_INITDB_ROOT_PASSWORD=temp_passwd
+      - MONGO_INITDB_DATABASE=db_courier
+    volumes:
+      - "./courier-database/data:/data/db"
+      - "./courier-database/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro"
