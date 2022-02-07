@@ -44,6 +44,6 @@ To simply try the result you can simply run ```docker-compose up```
 ## Left To-do
 
 There is still a lot to do ...
- - Adding a bunch of test but before everything else make a conf to create a new DB and clean it between test
+ - Adding a bunch of test but before everything else make a conf to create a new DB and clean it between test, maybe with [mongodb-memory-server](https://www.npmjs.com/package/mongodb-memory-server)
  - Be able to connect to the db create during the container creation to avoid use the default 'test' base
  - Play with [mutex](https://www.npmjs.com/package/async-mutex) to avoid race conditions  
