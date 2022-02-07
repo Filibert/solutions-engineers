@@ -37,7 +37,7 @@ To simplify the usage of the app there is a docker-compose.yaml to create both p
 The connection between the app and the database is handle by [MongooseJS](https://mongoosejs.com/)
 For the test part I used [Jest](https://jestjs.io/) and [superTest](https://github.com/visionmedia/supertest)
 
-To run the project in dev mode you can run the mongo container ```docker-compose up mongo``` and in the [Courier-capacity-manager folder](https://github.com/Filibert/solutions-engineers/tree/dev/second_test/courier-capacity-manager) run ```npm run watch``` and start querrying the 8080 port or ```run npm test``` to play the jest test.
+To run the project in dev mode you can run the mongo container ```docker-compose up mongo``` and in the [Courier-capacity-manager folder](https://github.com/Filibert/solutions-engineers/tree/dev/second_test/courier-capacity-manager) run ```npm run watch``` and start querrying the 8080 port or ```run npm test``` to play the jest test, you also have to create a ```.env``` file to specify the database_uri in the sample it's ```DB_URI="mongodb://courier-database:temp_passwd@localhost:27017"```.
 
 To simply try the result you can simply run ```docker-compose up```  
 
@@ -46,4 +46,5 @@ To simply try the result you can simply run ```docker-compose up```
 There is still a lot to do ...
  - Adding a bunch of test but before everything else make a conf to create a new DB and clean it between test, maybe with [mongodb-memory-server](https://www.npmjs.com/package/mongodb-memory-server)
  - Be able to connect to the db create during the container creation to avoid use the default 'test' base
- - Play with [mutex](https://www.npmjs.com/package/async-mutex) to avoid race conditions  
+ - Play with [mutex](https://www.npmjs.com/package/async-mutex) to avoid race conditions
+ - pass the secret and env variables in the CI  
